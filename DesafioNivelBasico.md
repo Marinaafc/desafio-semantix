@@ -60,6 +60,8 @@ kafka_view_3.write.format("kafka").option("kafka.bootstrap.servers", "kafka:9092
 7. Criar a visualização pelo Spark com os dados enviados para o HDFS
 - **View 1**
 ![image](https://github.com/Marinaafc/desafio-semantix/assets/107056644/acf35726-d291-4f85-a6d8-1f68b017799b)
+- **View 2**
+![image](https://github.com/Marinaafc/desafio-semantix/assets/107056644/0e545166-6e49-43cf-a612-3d825439a565)
 - **View 3**
   ![image](https://github.com/Marinaafc/desafio-semantix/assets/107056644/d65b47db-eeae-48ab-a339-5de314f0df8e)
 
