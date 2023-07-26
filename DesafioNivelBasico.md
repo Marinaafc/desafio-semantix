@@ -24,8 +24,6 @@ view_1 = view_t2.sort(desc("data"))
 view_2 = df_view.groupBy("regiao").agg(format_number(avg(col("casosAcumulado").cast(IntegerType())),2).cast(IntegerType()).alias("mediaCasosAcumulado"),format_number(stddev(col("casosAcumulado").cast(IntegerType())),2).cast(IntegerType()).alias("desvioPadraoCasosAcumulado"), format_number(avg(col("obitosAcumulado").cast(IntegerType())),2).cast(IntegerType()).alias("mediaObitosAcumulado"),format_number(stddev(col("obitosAcumulado").cast(IntegerType())),2).cast(IntegerType()).alias("desvioPadraoObitosAcumulado"))
 #view3:
 view_3 = df_view.groupBy("regiao").agg(format_number(avg(col("casosAcumulado").cast(IntegerType())),2).alias("mediaCasosAcumulado"))
-kafka_view_3 = view_3.withColumnRenamed("regiao", "key").withColumnRenamed("mediaCasosAcumulado", "value")
-kafka_view_3.write.format("kafka").option("kafka.bootstrap.servers", "kafka:9092").option("topic", "topic_view3").save()
 ```
 4. Salvar a primeira visualização como tabela Hive
 ```python
@@ -37,7 +35,8 @@ view_2.write.parquet("/user/marina/data/view_2")
 ```
 6. Salvar a terceira visualização em um tópico no Kafka
 ```python
-view_1.write.saveAsTable("table_view_1")
+kafka_view_3 = view_3.withColumnRenamed("regiao", "key").withColumnRenamed("mediaCasosAcumulado", "value")
+kafka_view_3.write.format("kafka").option("kafka.bootstrap.servers", "kafka:9092").option("topic", "topic_view3").save()
 ```
 7. Criar a visualização pelo Spark com os dados enviados para o HDFS
 8. Salvar a visualização do exercício 6 em um tópico no Elastic
