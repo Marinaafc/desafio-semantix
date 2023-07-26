@@ -33,15 +33,6 @@ view_2 = df_view.groupBy("regiao").agg(format_number(avg(col("casosAcumulado").c
 #view3:
 view_3 = df_view.groupBy("regiao").agg(format_number(avg(col("casosAcumulado").cast(IntegerType())),2).alias("mediaCasosAcumulado"))
 ```
-- View 1
-![image](https://github.com/Marinaafc/desafio-semantix/assets/107056644/9956dc00-d006-4199-939f-1da58e98b673)
-![image](https://github.com/Marinaafc/desafio-semantix/assets/107056644/e7a27113-1173-4a92-8f33-d2b02ad8d66c)
-
-
-- View 2
-
-- View 3
-
 4. Salvar a primeira visualização como tabela Hive
 ```python
 view_1.write.saveAsTable("table_view_1")
@@ -55,6 +46,15 @@ view_2.write.parquet("/user/marina/data/view_2")
 kafka_view_3 = view_3.withColumnRenamed("regiao", "key").withColumnRenamed("mediaCasosAcumulado", "value")
 kafka_view_3.write.format("kafka").option("kafka.bootstrap.servers", "kafka:9092").option("topic", "topic_view3").save()
 ```
+- **View 1**
+![image](https://github.com/Marinaafc/desafio-semantix/assets/107056644/9956dc00-d006-4199-939f-1da58e98b673)
+![image](https://github.com/Marinaafc/desafio-semantix/assets/107056644/e7a27113-1173-4a92-8f33-d2b02ad8d66c)
+
+
+- **View 2**
+
+- **View 3**
+
 7. Criar a visualização pelo Spark com os dados enviados para o HDFS
 8. Salvar a visualização do exercício 6 em um tópico no Elastic
 9. Criar um dashboard no Elastic para visualização dos novos dados enviados
