@@ -35,7 +35,7 @@ view_3 = df_view.groupBy("regiao").agg(format_number(avg(col("casosAcumulado").c
 ```
 4. Salvar a primeira visualização como tabela Hive
 ```python
-view_1.write.saveAsTable("table_view_1")
+view_1.write.saveAsTable("table_view1")
 ```
 - **View 1**
 ![image](https://github.com/Marinaafc/desafio-semantix/assets/107056644/9956dc00-d006-4199-939f-1da58e98b673)
