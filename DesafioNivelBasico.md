@@ -14,9 +14,9 @@ spark.conf.set("hive.exec.dynamic.partition.mode", "nonstrict")
 read_project = spark.read.csv("/user/marina/data/projeto/", header=True, sep=";",)
 read_project.write.mode('overwrite').partitionBy('municipio').format('parquet').option('path',"/user/hive/warehouse/desafio_semantix").saveAsTable("p_municipio")
 ```
-![image](https://github.com/Marinaafc/desafio-semantix/assets/107056644/3e4f2cf3-743c-4fd9-9d7e-3a28b579a53e)
-![image](https://github.com/Marinaafc/desafio-semantix/assets/107056644/b793df60-6009-4aa5-bd49-ebad381da7e2)
-![image](https://github.com/Marinaafc/desafio-semantix/assets/107056644/843f661f-cea5-4e2b-bc5c-6a962295965b)
+- ![image](https://github.com/Marinaafc/desafio-semantix/assets/107056644/3e4f2cf3-743c-4fd9-9d7e-3a28b579a53e)
+- ![image](https://github.com/Marinaafc/desafio-semantix/assets/107056644/b793df60-6009-4aa5-bd49-ebad381da7e2)
+- ![image](https://github.com/Marinaafc/desafio-semantix/assets/107056644/843f661f-cea5-4e2b-bc5c-6a962295965b)
 
 
 3. Criar as 3 vizualizações pelo Spark com os dados enviados para o HDFS
@@ -25,14 +25,23 @@ from pyspark.sql.types import *
 from pyspark.sql.functions import *
 df_view = spark.read.table("p_municipio")
 #view1:
-view_t = df_view.withColumn("data", from_unixtime(unix_timestamp(col("data"), "yyyy-MM-dd"),"dd-MM-yyyy")).select("regiao", "estado", "municipio", "data", "semanaEpi", "populacaoTCU2019", "casosAcumulado", "casosNovos", "obitosAcumulado", "obitosNovos")
-view_t2 = view_t.withColumn("populacaoTCU2019", col("populacaoTCU2019").cast(IntegerType())).withColumn("casosAcumulado", col("casosAcumulado").cast(IntegerType())).withColumn("semanaEpi", col("semanaEpi").cast(IntegerType())).withColumn("casosNovos", col("casosNovos").cast(IntegerType())).withColumn("obitosAcumulado", col("obitosAcumulado").cast(IntegerType())).withColumn("obitosNovos", col("obitosNovos").cast(IntegerType()))
+view_t = df_view.withColumn("data", from_unixtime(unix_timestamp(col("data"), "yyyy-MM-dd"),"dd-MM-yyyy")).select("regiao", "estado", "data", "semanaEpi", "casosAcumulado", "casosNovos", "obitosAcumulado", "obitosNovos")
+view_t2 = view_t.withColumn("casosAcumulado", col("casosAcumulado").cast(IntegerType())).withColumn("semanaEpi", col("semanaEpi").cast(IntegerType())).withColumn("casosNovos", col("casosNovos").cast(IntegerType())).withColumn("obitosAcumulado", col("obitosAcumulado").cast(IntegerType())).withColumn("obitosNovos", col("obitosNovos").cast(IntegerType()))
 view_1 = view_t2.sort(desc("data"))
 #view2:
 view_2 = df_view.groupBy("regiao").agg(format_number(avg(col("casosAcumulado").cast(IntegerType())),2).cast(IntegerType()).alias("mediaCasosAcumulado"),format_number(stddev(col("casosAcumulado").cast(IntegerType())),2).cast(IntegerType()).alias("desvioPadraoCasosAcumulado"), format_number(avg(col("obitosAcumulado").cast(IntegerType())),2).cast(IntegerType()).alias("mediaObitosAcumulado"),format_number(stddev(col("obitosAcumulado").cast(IntegerType())),2).cast(IntegerType()).alias("desvioPadraoObitosAcumulado"))
 #view3:
 view_3 = df_view.groupBy("regiao").agg(format_number(avg(col("casosAcumulado").cast(IntegerType())),2).alias("mediaCasosAcumulado"))
 ```
+- View 1
+![image](https://github.com/Marinaafc/desafio-semantix/assets/107056644/9956dc00-d006-4199-939f-1da58e98b673)
+![image](https://github.com/Marinaafc/desafio-semantix/assets/107056644/e7a27113-1173-4a92-8f33-d2b02ad8d66c)
+
+
+- View 2
+
+- View 3
+
 4. Salvar a primeira visualização como tabela Hive
 ```python
 view_1.write.saveAsTable("table_view_1")
