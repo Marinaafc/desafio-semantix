@@ -31,7 +31,7 @@ view_1.write.saveAsTable("table_view_1")
 ```
 5. Salvar a segunda visualização com formato parquet e compressão snappy
 ```python
-view_1.write.saveAsTable("table_view_1")
+view_2.write.parquet("/user/marina/data/")
 ```
 6. Salvar a terceira visualização em um tópico no Kafka
 ```python
