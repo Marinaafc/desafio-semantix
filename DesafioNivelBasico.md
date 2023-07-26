@@ -55,6 +55,9 @@ kafka_view_3 = view_3.withColumnRenamed("regiao", "key").withColumnRenamed("medi
 kafka_view_3.write.format("kafka").option("kafka.bootstrap.servers", "kafka:9092").option("topic", "topic_view3").save()
 ```
 - **View 3**
+  ![image](https://github.com/Marinaafc/desafio-semantix/assets/107056644/8e131b74-a9a5-4e4e-8585-bd89cb40d8e3)
+
+
 
 7. Criar a visualização pelo Spark com os dados enviados para o HDFS
 8. Salvar a visualização do exercício 6 em um tópico no Elastic
