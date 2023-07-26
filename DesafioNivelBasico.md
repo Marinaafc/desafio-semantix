@@ -14,6 +14,11 @@ spark.conf.set("hive.exec.dynamic.partition.mode", "nonstrict")
 read_project = spark.read.csv("/user/marina/data/projeto/", header=True, sep=";",)
 read_project.write.mode('overwrite').partitionBy('municipio').format('parquet').option('path',"/user/hive/warehouse/desafio_semantix").saveAsTable("p_municipio")
 ```
+![image](https://github.com/Marinaafc/desafio-semantix/assets/107056644/3e4f2cf3-743c-4fd9-9d7e-3a28b579a53e)
+![image](https://github.com/Marinaafc/desafio-semantix/assets/107056644/b793df60-6009-4aa5-bd49-ebad381da7e2)
+![image](https://github.com/Marinaafc/desafio-semantix/assets/107056644/843f661f-cea5-4e2b-bc5c-6a962295965b)
+
+
 3. Criar as 3 vizualizações pelo Spark com os dados enviados para o HDFS
 ```python
 from pyspark.sql.types import *
