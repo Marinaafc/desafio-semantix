@@ -23,7 +23,9 @@ view_1 = view_t2.sort(desc("data"))
 #view2:
 view_2 = df_view.groupBy("regiao").agg(format_number(avg(col("casosAcumulado").cast(IntegerType())),2).cast(IntegerType()).alias("mediaCasosAcumulado"),format_number(stddev(col("casosAcumulado").cast(IntegerType())),2).cast(IntegerType()).alias("desvioPadraoCasosAcumulado"), format_number(avg(col("obitosAcumulado").cast(IntegerType())),2).cast(IntegerType()).alias("mediaObitosAcumulado"),format_number(stddev(col("obitosAcumulado").cast(IntegerType())),2).cast(IntegerType()).alias("desvioPadraoObitosAcumulado"))
 #view3:
-view_3 = df_view.withColumn("semanaEpi", col("semanaEpi").cast(IntegerType())).withColumn("casosNovos", col("casosNovos").cast(IntegerType())).withColumn("obitosNovos", col("obitosNovos").cast(IntegerType())).withColumn("Recuperadosnovos", col("Recuperadosnovos").cast(IntegerType())).withColumn("emAcompanhamentoNovos", col("emAcompanhamentoNovos").cast(IntegerType())).select("regiao", "estado", "coduf", "semanaEpi", "casosNovos", "obitosNovos", "Recuperadosnovos", "emAcompanhamentoNovos")
+view_3 = df_view.groupBy("regiao").agg(format_number(avg(col("casosAcumulado").cast(IntegerType())),2).alias("mediaCasosAcumulado"))
+kafka_view_3 = view_3.withColumnRenamed("regiao", "key").withColumnRenamed("mediaCasosAcumulado", "value")
+kafka_view_3.write.format("kafka").option("kafka.bootstrap.servers", "kafka:9092").option("topic", "topic_view3").save()
 ```
 4. Salvar a primeira visualização como tabela Hive
 ```python
