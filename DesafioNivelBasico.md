@@ -14,6 +14,8 @@ read_project.write.mode('overwrite').partitionBy('municipio').format('parquet').
 ```
 3. Criar as 3 vizualizações pelo Spark com os dados enviados para o HDFS
 ```python
+from pyspark.sql.types import *
+from pyspark.sql.functions import *
 #view1:
 view_t = df_view.withColumn("data", from_unixtime(unix_timestamp(col("data"), "yyyy-MM-dd"),"dd-MM-yyyy")).select("regiao", "estado", "municipio", "data", "semanaEpi", "populacaoTCU2019", "casosAcumulado", "casosNovos", "obitosAcumulado", "obitosNovos")
 view_t2 = view_t.withColumn("populacaoTCU2019", col("populacaoTCU2019").cast(IntegerType())).withColumn("casosAcumulado", col("casosAcumulado").cast(IntegerType())).withColumn("semanaEpi", col("semanaEpi").cast(IntegerType())).withColumn("casosNovos", col("casosNovos").cast(IntegerType())).withColumn("obitosAcumulado", col("obitosAcumulado").cast(IntegerType())).withColumn("obitosNovos", col("obitosNovos").cast(IntegerType()))
