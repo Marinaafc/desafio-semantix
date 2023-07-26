@@ -1,9 +1,11 @@
 1. Enviar os dados para o hdfs
 - descompactei e aloquei os arquivos em uma pasta chamada "projeto" dentro da pasta input
-- docker exec -it namenode bash
-- hdfs dfs -ls /user/marina/data
-  - para verificar se a pasta ainda existe
-- hdfs dfs -put /input/projeto /user/marina/data
+```
+docker exec -it namenode bash
+hdfs dfs -ls /user/marina/data
+##### para verificar se a pasta ainda existe
+hdfs dfs -put /input/projeto /user/marina/data
+```
 2. Otimizar todos os dados do hdfs para uma tabela Hive particionada por 
 município.
 ```python
