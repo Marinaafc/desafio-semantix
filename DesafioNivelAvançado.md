@@ -1,4 +1,4 @@
-# Parte 1 - Consumir dados da API de Elasticsearch
+# Parte 1 - Consumir os dados da API de Elasticsearch
 ## Tentativa 1 - Consumo através do Elasticsearch-Hadoop
 - Tendo como base os links disponibilizados no Desafio, minha primeira tentativa foi pelo Elasticsearch-Hadoop.
 1. Primeiramente acessei o container do Jupyter-Spark para acessar a dependência do Elasticsearch-Spark:
