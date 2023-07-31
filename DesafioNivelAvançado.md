@@ -54,7 +54,10 @@ output {
 }
 ```
 2. E deu certo! Os dados começaram a chegar em um índice no Elasticsearch.
-Imagem
+![image](https://github.com/Marinaafc/desafio-semantix/assets/107056644/141a1681-1620-49f4-9c63-1d0d5c23b33f)
+![image](https://github.com/Marinaafc/desafio-semantix/assets/107056644/977dfcc0-b87d-4f9f-9a23-f3476c17457b)
+
+
 
 # Parte 2 - Replicar as visualizações do site “https://covid.saude.gov.br/”
 - A parte que eu achei que seria mais tranquila de fazer, acabou sendo complicada também. Depois que consegui acessar os dados da API, comecei a estranhar o fato de que não tinha nenhum campo que me oferecesse a possibilidade de calcular o nº de óbitos.
