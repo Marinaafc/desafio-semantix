@@ -73,3 +73,5 @@ hdfs dfs -get /user/marina/data/view_3 /input
 ```
 - Em seguida, fiz a importação do csv no Elaticsearch
 9. Criar um dashboard no Elastic para visualização dos novos dados enviados
+![image](https://github.com/Marinaafc/desafio-semantix/assets/107056644/69547570-f442-4583-8347-d27f84950582)
+- Não ficou muito bem como eu queria, mas tentarei mudar em breve!
