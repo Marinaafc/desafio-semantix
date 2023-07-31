@@ -60,4 +60,4 @@ output {
 
 
 # Parte 2 - Replicar as visualizações do site “https://covid.saude.gov.br/”
-- Apesar dos dados terem começado a chegar no índice, ainda precisarei fazer algumas correções para conseguir criar as visualizações.
+- Apesar dos dados terem começado a chegar no índice, acredito que ainda precisarei fazer algumas correções para conseguir criar as visualizações.
