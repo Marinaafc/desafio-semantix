@@ -60,5 +60,4 @@ output {
 
 
 # Parte 2 - Replicar as visualizações do site “https://covid.saude.gov.br/”
-- A parte que eu achei que seria mais tranquila de fazer, acabou sendo complicada também. Depois que consegui acessar os dados da API, comecei a estranhar o fato de que não tinha nenhum campo que me oferecesse a possibilidade de calcular o nº de óbitos.
-- Devido a essa dificuldade, ainda estou buscando uma forma de replicar as visualizações do site.
+- Em desenvolvimento
