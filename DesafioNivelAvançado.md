@@ -14,7 +14,7 @@ val esConfig = Map("es.nodes" -> "https://imunizacao-es.saude.gov.br", "es.net.h
 val df = spark.read.format("org.elasticsearch.spark.sql").options(esConfig).load()
 ```
 3. Porém, me deparei com um problema, pois o usuário disponibilizado não tinha autorização para acessar os índices da API e eu precisava obrigatoriamente definir um índice para utilizar o "load()" e ler os dados no DataFrame
-![image](https://github.com/Marinaafc/desafio-semantix/assets/107056644/5061468e-e658-4315-9f95-283201100aed)
+![image](https://github.com/Marinaafc/desafio-semantix/assets/107056644/72f3910e-29ec-4b44-8679-546027a70fbd)
 ![image](https://github.com/Marinaafc/desafio-semantix/assets/107056644/5606c120-0dcf-49bf-9836-442265fd33ff)
 
 
