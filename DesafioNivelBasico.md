@@ -67,4 +67,9 @@ kafka_view_3.write.format("kafka").option("kafka.bootstrap.servers", "kafka:9092
 
 
 8. Salvar a visualização do exercício 6 em um tópico no Elastic
+```
+s_view3.write.csv("/user/marina/data/view_3")
+hdfs dfs -get /user/marina/data/view_3 /input
+```
+- Em seguida, fiz a importação do csv no Elaticsearch
 9. Criar um dashboard no Elastic para visualização dos novos dados enviados
