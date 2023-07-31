@@ -49,7 +49,7 @@ output {
   }
   elasticsearch {
     hosts => ["elasticsearch:9200"]
-    index => "marina-%{+yyyy.MM.dd}"
+    index => "desafio_api"
   }
 }
 ```
