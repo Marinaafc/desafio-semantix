@@ -23,7 +23,36 @@ val df = spark.read.format("org.elasticsearch.spark.sql").options(esConfig).load
 - No entanto, depois de refletir um pouco, percebi que não seria algo coerente com o propósito do desafio, pois os dados não seriam atualizados em tempo real como é nas visualizações do site que devem ser replicadas.
 - Por conta disso, após pesquisar mais um pouco, encontrei a possibilidade de consumo em tempo real da API pelo Logstash.
 1. Para que fosse possível o consumo pelo Logstash, precisei alterar o arquivo logstash.conf
-Imagem
+```
+input {
+  http_poller {
+    urls => {
+      test1 => {
+      method => get
+      user => "imunizacao_public"
+      password => "qlto5t&7r_@+#Tlstigi"
+      url => "https://imunizacao-es.saude.gov.br/_search"
+      headers => {
+        Accept => "application/json"
+      }
+    }
+  }
+  request_timeout => 60
+  schedule => { cron => "* * * * * UTC"}
+  codec => "json"
+  metadata_target => "http_poller_metadata"
+  }
+}
+output {
+  stdout {
+    codec => "json"
+  }
+  elasticsearch {
+    hosts => ["elasticsearch:9200"]
+    index => "marina-%{+yyyy.MM.dd}"
+  }
+}
+```
 2. E deu certo! Os dados começaram a chegar em um índice no Elasticsearch.
 Imagem
 
